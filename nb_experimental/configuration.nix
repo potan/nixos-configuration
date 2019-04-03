@@ -37,6 +37,10 @@
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
 
+  environment.variables = {
+      EDITOR = pkgs.lib.mkOverride 0 "vim";
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -44,7 +48,22 @@
     binutils
     findutils
     unzip
-    vim
+#    vim
+    vim_configurable
+    (
+        with import <nixpkgs> {};
+
+        vim_configurable.customize {
+            # Specifies the vim binary name.
+            # E.g. set this to "my-vim" and you need to type "my-vim" to open this vim
+            # This allows to have multiple vim packages installed (e.g. with a different set of plugins)
+            name = "vim";
+            vimrcConfig.customRC = ''
+                # Here you can specify what usually goes into `~/.vimrc` 
+                syntax enable
+            '';
+        }
+    )
     wget
     htop
     hicolor_icon_theme
@@ -168,8 +187,23 @@
     spark
     gcc8
     pkgconfig
+    pkgconfigUpstream
     libsodium
+    units
+    bc
+    bcal
+    pgcli
+    smlnj
+    manticore
+    haskellPackages.cml
+#    haskellPackages.sync
   ];
+
+  virtualisation = {
+#    libvirtd.enable = false;
+    docker.enable = true;
+#    virtualbox.host.enable = true;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
