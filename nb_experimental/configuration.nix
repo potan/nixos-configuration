@@ -2,7 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs
+ ,  ... }:
 
 {
   imports =
@@ -41,6 +42,9 @@
       EDITOR = pkgs.lib.mkOverride 0 "vim";
   };
 
+  nixpkgs.config.vim.perl = true;
+  nixpkgs.config.vim.python = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -49,7 +53,7 @@
     findutils
     unzip
 #    vim
-    vim_configurable
+#    vim_configurable
     (
         with import <nixpkgs> {};
 
