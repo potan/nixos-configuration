@@ -167,6 +167,8 @@
     shared_desktop_ontologies
     spark
     gcc8
+    pkgconfig
+    libsodium
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
