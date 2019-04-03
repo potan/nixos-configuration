@@ -166,6 +166,7 @@
 #    haskellPackages.lojysamban
     shared_desktop_ontologies
     spark
+    gcc8
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
