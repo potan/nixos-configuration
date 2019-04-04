@@ -206,6 +206,11 @@
     exfat
     fatrace
     file
+    locale
+    glibcLocales
+    libatomic_ops
+    libstdcxx5
+    patchelf
   ];
 
   virtualisation = {
