@@ -201,6 +201,7 @@
     manticore
     haskellPackages.cml
 #    haskellPackages.sync
+    maven
   ];
 
   virtualisation = {
