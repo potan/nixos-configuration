@@ -202,6 +202,10 @@
     haskellPackages.cml
 #    haskellPackages.sync
     maven
+    glibc
+    exfat
+    fatrace
+    file
   ];
 
   virtualisation = {
