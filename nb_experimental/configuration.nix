@@ -213,6 +213,7 @@
     libstdcxx5
     patchelf
     slack
+    skypeforlinux
   ];
 
   virtualisation = {
