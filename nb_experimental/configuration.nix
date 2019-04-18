@@ -45,6 +45,7 @@
   nixpkgs.config.vim.perl = true;
   nixpkgs.config.vim.python = true;
 
+  nixpkgs.config.allowUnfree = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -211,6 +212,7 @@
     libatomic_ops
     libstdcxx5
     patchelf
+    slack
   ];
 
   virtualisation = {
