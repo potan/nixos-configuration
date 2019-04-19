@@ -214,6 +214,7 @@
     patchelf
     slack
     skypeforlinux
+    refind
   ];
 
   virtualisation = {
