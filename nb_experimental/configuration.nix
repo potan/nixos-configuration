@@ -215,6 +215,20 @@
     slack
     skypeforlinux
     refind
+    torsocks
+    tor
+    tor-arm
+    usb-modeswitch
+    usb-modeswitch-data
+    ripgrep
+    mercurial
+    tectonic
+    pygmentex
+    texlive.combined.scheme-full
+    scala
+#    scalafix
+    nodejs
+    elmPackages.elm
   ];
 
   virtualisation = {
@@ -232,6 +246,8 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.tor.enable = true;
+  services.tor.enableGeoIP = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -243,8 +259,8 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
