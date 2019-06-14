@@ -45,7 +45,9 @@
   nixpkgs.config.vim.perl = true;
   nixpkgs.config.vim.python = true;
 
+  nixpkgs.config.android_sdk.accept_license = true;
   nixpkgs.config.allowUnfree = true;
+#  nixpkgs.config.allowBroken = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -117,7 +119,7 @@
     yi haskellPackages.yi-language haskellPackages.yi
     rustup
 #    haskellPackages.modelicaparser
-    inferno
+#    inferno
     irods
     irods-icommands
     powershell
@@ -131,7 +133,18 @@
     mplayer smplayer
     git gitfs
     apt dpkg
+
     androidndk
+    android-studio
+    android-udev-rules
+    android-file-transfer
+    apktool
+    adb-sync
+    adbfs-rootless
+    abootimg
+    imgpatchtools
+    gnirehtet
+
     ats
 #    haskellPackages.ats-pkg
 #    haskellPackages.ats-setup
@@ -229,6 +242,27 @@
 #    scalafix
     nodejs
     elmPackages.elm
+    exa
+    corefonts
+    liberastika
+#    liberation-sans-narrow
+    liberation_ttf
+    vistafonts-chs
+    texlive.combined.scheme-full
+    fontconfig
+    freetype
+    lmodern
+    ghostscript
+    alt-ergo
+    cvc4
+    boolector
+#    monosat
+#    opensmt
+    veriT
+    yices
+    killall
+    ntp
+    gnumake
   ];
 
   virtualisation = {
