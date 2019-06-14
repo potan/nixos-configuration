@@ -264,6 +264,8 @@
     ntp
     gnumake
     git-lfs
+    haxe
+    neko
   ];
 
   virtualisation = {
