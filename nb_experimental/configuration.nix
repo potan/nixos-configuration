@@ -119,7 +119,7 @@
     yi haskellPackages.yi-language haskellPackages.yi
     rustup
 #    haskellPackages.modelicaparser
-#    inferno
+    inferno
     irods
     irods-icommands
     powershell
@@ -263,6 +263,7 @@
     killall
     ntp
     gnumake
+    git-lfs
   ];
 
   virtualisation = {
