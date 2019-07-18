@@ -266,6 +266,11 @@
     git-lfs
     haxe
     neko
+    leela
+    gecode
+    opam
+    ocaml
+#    or-tools
   ];
 
   virtualisation = {
