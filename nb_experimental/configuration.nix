@@ -271,6 +271,10 @@
     opam
     ocaml
 #    or-tools
+    framac
+    vmfs-tools
+    openvswitch
+    eprover
   ];
 
   virtualisation = {
