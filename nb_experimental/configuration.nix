@@ -275,6 +275,10 @@
     vmfs-tools
     openvswitch
     eprover
+    prover9
+    veriT
+#    metamath
+    abella
   ];
 
   virtualisation = {
