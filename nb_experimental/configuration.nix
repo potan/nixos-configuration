@@ -279,6 +279,12 @@
     veriT
 #    metamath
     abella
+    qiv
+    hwinfo
+    gnome3.cheese
+    imagemagick7Big
+    unrar
+    alloy
   ];
 
   virtualisation = {
