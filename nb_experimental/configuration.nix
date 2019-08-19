@@ -285,6 +285,12 @@
     imagemagick7Big
     unrar
     alloy
+    fbreader
+    sigil
+    obs-studio
+    wxcam
+
+    graphviz
   ];
 
   virtualisation = {
