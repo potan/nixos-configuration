@@ -291,6 +291,31 @@
     wxcam
 
     graphviz
+
+    autogen
+    autoconf
+    automake
+    SDL
+    SDL_gfx
+    SDL_ttf
+    SDL_mixer
+
+    ktorrent
+    xorg.imake
+
+    fuse
+    appimage-run
+    appimagekit
+
+# for k-framework
+    stack
+    cmake
+    clang_7
+    libffi
+    boost
+    jemalloc
+    libyaml
+    llvm_7
   ];
 
   virtualisation = {
