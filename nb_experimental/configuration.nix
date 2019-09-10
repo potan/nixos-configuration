@@ -306,6 +306,10 @@
     fuse
     appimage-run
     appimagekit
+    cabal-install
+    gperf
+    readline70
+    gflags
 
 # for k-framework
     stack
