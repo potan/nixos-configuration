@@ -12,6 +12,7 @@
     ];
 
   # Use the systemd-boot EFI boot loader.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -42,7 +43,7 @@
       EDITOR = pkgs.lib.mkOverride 0 "vim";
   };
 
-  nixpkgs.config.vim.perl = true;
+#  nixpkgs.config.vim.perl = true;
   nixpkgs.config.vim.python = true;
 
   nixpkgs.config.android_sdk.accept_license = true;
@@ -57,19 +58,35 @@
     unzip
 #    vim
 #    vim_configurable
+    perl
+    python  # for vim
+    python37  # for vim
+    python37Packages.pip
+    python37Packages.setuptools
+    python37Packages.sexpdata
+    python37Packages.websocket_client
     (
         with import <nixpkgs> {};
 
-        vim_configurable.customize {
-            # Specifies the vim binary name.
-            # E.g. set this to "my-vim" and you need to type "my-vim" to open this vim
-            # This allows to have multiple vim packages installed (e.g. with a different set of plugins)
-            name = "vim";
-            vimrcConfig.customRC = ''
-                # Here you can specify what usually goes into `~/.vimrc` 
-                syntax enable
-            '';
-        }
+#        vim_configurable.customize {
+#            # Specifies the vim binary name.
+#            # E.g. set this to "my-vim" and you need to type "my-vim" to open this vim
+#            # This allows to have multiple vim packages installed (e.g. with a different set of plugins)
+#            name = "vim";
+#            vimrcConfig.customRC = ''
+#               # Here you can specify what usually goes into `~/.vimrc` 
+#               syntax enable
+#            '';
+#        }
+
+        vim_configurable.override(oldAttrs: 
+          oldAttrs // {
+            python = python37;
+            pythonSupport = true;
+            perlSupport = true;
+            tclSupport = true;
+          }
+        )
     )
     wget
     htop
@@ -101,11 +118,12 @@
     btrfs-dedupe
     ghc
     sbt sbt-extras
+    gradle gradle-completion
     julia_11
 #    haskellPackages.jupyter
     jupyter
     ant
-    jdk10
+    jdk11
     visualvm
     coq
     prooftree
@@ -116,12 +134,12 @@
     cargo
     gnuradio-with-packages
     idris
-    yi haskellPackages.yi-language haskellPackages.yi
+#    yi haskellPackages.yi-language haskellPackages.yi
     rustup
 #    haskellPackages.modelicaparser
-    inferno
+##    inferno
     irods
-    irods-icommands
+#    irods-icommands
     powershell
 #    haskellPackages.roshask
 #    haskellPackages.rosmsg
@@ -134,7 +152,7 @@
     git gitfs
     apt dpkg
 
-    androidndk
+##    androidndk
     android-studio
     android-udev-rules
     android-file-transfer
@@ -146,7 +164,8 @@
     gnirehtet
 
     ats
-#    haskellPackages.ats-pkg
+    ats2
+    haskellPackages.ats-pkg
 #    haskellPackages.ats-setup
 #    haskellPackages.ats-storable
 #    haskellPackages.c2ats
@@ -156,7 +175,7 @@
     haskellPackages.xmonad haskellPackages.xmobar
     nip2
     libreoffice
-    telegram-cli
+#    telegram-cli
     telegram-purple
     tdesktop
 #    haskellPackages.haskore-supercollider
@@ -174,23 +193,43 @@
     vimPlugins.vim-hoogle
     vimPlugins.vim-solidity
     vimPlugins.vim-toml
-    haskellPackages.Agda
+##    haskellPackages.Agda
+    rakudo
+    unison-ucm
+#    aliceml
+#    haskellPackages.ivory
+#    haskellPackages.ivory-examples
+#    haskellPackages.ion
 
     vimHugeX
     protobuf
+    haskellPackages.BNFC
+#    haskellPackages.BNFC-meta
+    jflex
+
     evince
     leiningen
+    ocamlPackages.camlp5
     coqPackages.mathcomp
+    coqPackages.ssreflect
+    coqPackages.paramcoq
+    coqPackages.coqhammer
+    coqPackages.mathcomp-ssreflect
+    coqPackages.mathcomp-analysis
+    coqPackages.QuickChick
+    ocamlPackages.elpi
+    prooftree
     emacsPackages.proofgeneral_HEAD
     why3
 #    haskellPackages.why3
     z3
-    haskellPackages.z3
+#    haskellPackages.z3
     minizinc
 #    haskellPackages.haskelzinc
     tlaps
     tlaplus
     tlaplusToolbox
+
     mosquitto
     apacheKafka
     neo4j
@@ -227,10 +266,13 @@
     patchelf
     slack
     skypeforlinux
+    discord
+    zoom-us
     refind
     torsocks
     tor
     tor-arm
+    privoxy
     usb-modeswitch
     usb-modeswitch-data
     ripgrep
@@ -239,7 +281,8 @@
     pygmentex
     texlive.combined.scheme-full
     scala
-#    scalafix
+    clips
+    scalafix
     nodejs
     elmPackages.elm
     exa
@@ -270,14 +313,14 @@
     gecode
     opam
     ocaml
-#    or-tools
+    or-tools
     framac
     vmfs-tools
     openvswitch
     eprover
     prover9
     veriT
-#    metamath
+    metamath
     abella
     qiv
     hwinfo
@@ -289,8 +332,23 @@
     sigil
     obs-studio
     wxcam
+    libjpeg
+    libjpeg_original
+    libpng12
+    gimp
+    shutter
+    kcharselect
+    wl-clipboard
+    xclip
+    yank
+    xen
 
     graphviz
+    gephi
+    ocamlPackages.ocamlgraph
+#    haskellPackages.xdot
+    yed
+#    haskellPackages.dot2graphml
 
     autogen
     autoconf
@@ -310,6 +368,55 @@
     gperf
     readline70
     gflags
+    m4
+    nspr
+    xorg.libXi
+    qt5.full
+
+    cachix
+
+    celf
+    clasp
+    clean
+#    haskellPackages.copilot
+    haskellPackages.CPL
+#    haskellPackages.Dao
+    eff
+    es
+    fira-code
+    fstar
+    gappa
+    golly
+#    haskellPackages.GPipe
+#    hol
+    j
+    kona
+    mercury
+#    metaocaml_3_09
+    mill
+    netlogo
+    noweb
+    picat
+    pure
+    puredata
+#    purescript
+#    coqPackages.ltac2
+    urweb
+
+    postgresql
+    postgresqlPackages.postgis
+    virtuoso7
+
+    pciutils
+    lshw
+    matrix-synapse
+    purple-matrix
+    purple-discord
+    purple-facebook
+    telegram-purple
+    empathy
+    pidgin
+    ag
 
 # for k-framework
     stack
@@ -338,7 +445,11 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.tor.enable = true;
+  services.tor.client.enable = true;
   services.tor.enableGeoIP = true;
+  services.neo4j.enable = true;
+  services.postgresql.enable = true;
+#  services.virtuoso7.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -360,6 +471,7 @@
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
+  services.xserver.libinput.tapping = false;
 
   # Enable the KDE Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
@@ -371,10 +483,12 @@
   #   uid = 1000;
   # };
 
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.channel = https://nixos.org/channels/nixos-19.09;
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "18.09"; # Did you read the comment?
+  system.stateVersion = "19.03"; # Did you read the comment?
 
 }
