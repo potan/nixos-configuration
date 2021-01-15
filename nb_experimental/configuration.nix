@@ -15,6 +15,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.binfmt.emulatedSystems = [ "wasm32-wasi" "wasm64-wasi" "x86_64-windows" "aarch64-linux" "riscv64-linux" "riscv32-linux"];
 
   networking.hostName = "pmnix"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -31,10 +32,13 @@
 
   # Select internationalisation properties.
   i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "us";
+#    consoleFont = "Lat2-Terminus16";
+#    consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
   };
+
+  console.font = "Lat2-Terminus16";
+  console.keyMap = "us";
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
@@ -115,7 +119,7 @@
     roxterm
     btrfs-progs
     haskellPackages.btrfs
-    btrfs-dedupe
+#    btrfs-dedupe
     ghc
     sbt sbt-extras
     gradle gradle-completion
@@ -137,6 +141,7 @@
 #    yi haskellPackages.yi-language haskellPackages.yi
     rustup
 #    haskellPackages.modelicaparser
+#    openmodelica
 ##    inferno
     irods
 #    irods-icommands
@@ -150,7 +155,8 @@
     hyperrogue
     mplayer smplayer
     git gitfs
-    apt dpkg
+#    apt
+    dpkg
 
 ##    androidndk
     android-studio
@@ -165,7 +171,7 @@
 
     ats
     ats2
-    haskellPackages.ats-pkg
+#    haskellPackages.ats-pkg
 #    haskellPackages.ats-setup
 #    haskellPackages.ats-storable
 #    haskellPackages.c2ats
@@ -193,15 +199,22 @@
     vimPlugins.vim-hoogle
     vimPlugins.vim-solidity
     vimPlugins.vim-toml
-##    haskellPackages.Agda
+    haskellPackages.Agda
     rakudo
     unison-ucm
 #    aliceml
 #    haskellPackages.ivory
 #    haskellPackages.ivory-examples
 #    haskellPackages.ion
+#    futhark
+    ponyc
 
+    leo-editor
     vimHugeX
+    kakoune
+    kak-lsp
+    fd
+
     protobuf
     haskellPackages.BNFC
 #    haskellPackages.BNFC-meta
@@ -241,7 +254,7 @@
     swiProlog
 #    haskellPackages.lojysamban
     shared_desktop_ontologies
-    spark
+#    spark
     gcc8
     pkgconfig
     pkgconfigUpstream
@@ -262,12 +275,13 @@
     locale
     glibcLocales
     libatomic_ops
-    libstdcxx5
+#    libstdcxx5
     patchelf
     slack
     skypeforlinux
     discord
     zoom-us
+    nheko
     refind
     torsocks
     tor
@@ -342,12 +356,16 @@
     xclip
     yank
     xen
+    wabt
+    haskellPackages.shentong
+    openocd
+    geogebra
 
     graphviz
     gephi
     ocamlPackages.ocamlgraph
 #    haskellPackages.xdot
-    yed
+#    yed
 #    haskellPackages.dot2graphml
 
     autogen
@@ -357,8 +375,10 @@
     SDL_gfx
     SDL_ttf
     SDL_mixer
+    glew
 
     ktorrent
+    qbittorrent
     xorg.imake
 
     fuse
@@ -391,15 +411,15 @@
 #    hol
     j
     kona
-    mercury
+#    mercury
 #    metaocaml_3_09
     mill
     netlogo
     noweb
     picat
-    pure
+#    pure
     puredata
-#    purescript
+    purescript
 #    coqPackages.ltac2
     urweb
 
@@ -417,6 +437,14 @@
     empathy
     pidgin
     ag
+    unetbootin
+    bluezFull
+    obexfs
+    obexftp
+
+    gdb
+    radare2
+    objconv
 
 # for k-framework
     stack
@@ -442,6 +470,9 @@
 
   # List services that you want to enable:
 
+  nixpkgs.config.permittedInsecurePackages = [
+         "openssl-1.0.2u"
+       ];
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.tor.enable = true;
@@ -464,6 +495,10 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+  hardware.enableRedistributableFirmware = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.layout = "us";
@@ -484,7 +519,7 @@
   # };
 
   system.autoUpgrade.enable = true;
-  system.autoUpgrade.channel = https://nixos.org/channels/nixos-19.09;
+  system.autoUpgrade.channel = https://nixos.org/channels/nixos-20.03;
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
