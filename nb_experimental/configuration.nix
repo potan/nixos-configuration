@@ -337,7 +337,6 @@
     imgpatchtools
     gnirehtet
 
-    jflap
 #?    ats
     ats2
 #    haskellPackages.ats-pkg
@@ -345,6 +344,7 @@
 #    haskellPackages.ats-storable
 #    haskellPackages.c2ats
     maude
+    #strategoxp
     qemu
     OVMFFull
     sbcl
@@ -436,6 +436,7 @@
     haskellPackages.BNFC
 #    haskellPackages.BNFC-meta
     jflex
+    jflap # GUI tool for experimenting with formal languages topics
 
     evince
     clojure
