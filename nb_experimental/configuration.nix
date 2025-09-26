@@ -563,6 +563,7 @@
     lmodern
     ghostscript
     typst
+    typstPackages.jlyfish
     scala
     flix
     clips
